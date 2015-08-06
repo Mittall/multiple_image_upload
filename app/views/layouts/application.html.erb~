@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GalleryJqueryFileUpload</title>
+  <%= stylesheet_link_tag "application", :media => 'all'%>
+  <%= javascript_include_tag "application", :media => 'all'%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="span8"><%= link_to "Home", root_path %></div>
+  </div>
+  <div class="row">
+    <div class="span8"><%= yield %></div>
+  </div>
+</div>
+
+<div class="lessoncup">
+ 
+<div class="btn" id="show">Show Thumbs</div>
+<div class="btn" id="hide" style=" display:none;">Hide Thumbs</div>
+
+<div class="mag">
+  <div id="image"><img src="/assets/2.jpg" width="200" height="200" data-toggle="magnify"></div>
+</div>
+ 
+<div id="thumbs">
+<ul>
+<li style="background-image:url(/assets/1.jpg); background-repeat:no-repeat;" dir="/assets/1.jpg"></li> <br/>
+<li style="background-image:url(/assets/2.jpg); background-repeat:no-repeat;" dir="/assets/2.jpg"></li> <br/>
+<li style="background-image:url(/assets/3.jpg); background-repeat:no-repeat;" dir="/assets/3.jpg"></li> <br/>
+<li style="background-image:url(/assets/4.jpg); background-repeat:no-repeat;" dir="/assets/4.jpg"></li> <br/>
+<li style="background-image:url(/assets/5.jpg); background-repeat:no-repeat;" dir="/assets/5.jpg"></li>
+</ul>
+</div>
+ 
+</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+ 
+<script>
+ 
+$(document).ready(function(){
+  
+  
+ $('li').click(function(){
+   
+  var imgpath = $(this).attr('dir');
+   
+  $('#image').html('<img src='+imgpath+'>');
+   
+ });
+  
+  
+ $('.btn').click(function(){
+   
+  $('#thumbs').fadeIn(500);
+  $('#image').animate({marginTop:'10px'},200);
+  $(this).hide();
+   
+  $('#hide').fadeIn('slow');
+   
+ });
+  
+  
+ $('#hide').click(function(){
+   
+  $('#thumbs').fadeOut(500,function (){
+  $('#image').animate({marginTop:'50px'},200);
+  });
+   
+  $(this).hide();
+  $('#show').fadeIn('slow');
+   
+ });
+  
+  
+});
+</script>
+
+
+
